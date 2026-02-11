@@ -782,6 +782,28 @@ body.modal-lock {
   pointer-events: none;
 }
 
+/* عام */
+* { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* موبايل */
+@media (max-width: 768px) {
+
+  /* إذا عندك محتوى رئيسي عم يترك مساحة لسايدبار */
+  .main, .content, .page, .container, .wrapper, .glass-panel {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* إذا عندك سايدبار فعلي */
+  .sidebar, .side-menu, .nav-side {
+    display: none !important;
+  }
+}
+
+  
   </style>
 </head>
 <body>
@@ -8640,4 +8662,5 @@ function applyAttTarget(){
 
 </body>
 </html>
+
 
