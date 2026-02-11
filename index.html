@@ -7972,23 +7972,67 @@ const container =
                 </div>
             </div>
 
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; border: 1px solid #eee; margin-bottom: 25px; display:flex; gap:10px;">
-                <input type="text" id="filterName" placeholder="🔍 ابحث عن اسم..." onkeyup="renderBandTables()" value="${rawFilterName}" style="flex:2; padding:10px; border:1px solid #ccc; border-radius:6px;">
-                <select id="filterInst" onchange="renderBandTables()" style="flex:1; padding:10px; border:1px solid #ccc; border-radius:6px;">
-                    <option value="">🎹 كل الآلات</option>
-                    <option value="ترومبيت" ${filterInst==='ترومبيت'?'selected':''}>ترومبيت</option>
-                    <option value="سحاب" ${filterInst==='سحاب'?'selected':''}>سحاب</option>
-                    <option value="بريتون" ${filterInst==='بريتون'?'selected':''}>بريتون</option>
-                    <option value="بستون" ${filterInst==='بستون'?'selected':''}>بستون</option>
-                    <option value="بتكيس" ${filterInst==='بتكيس'?'selected':''}>بتكيس</option>
-                    <option value="طبل" ${filterInst==='طبل'?'selected':''}>طبل</option>
-                    <option value="مثلث" ${filterInst==='مثلث'?'selected':''}>مثلث</option>
-                </select>
-            </div>
+           <div class="band-filters" style="
+  background:#f8f9fa;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #eee;
+  margin-bottom:25px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;     /* ✅ مهم للموبايل */
+  align-items:stretch;
+">
+  <input
+    type="text"
+    id="filterName"
+    placeholder="🔍 ابحث عن اسم..."
+    onkeyup="renderBandTables()"
+    value="${rawFilterName}"
+    style="
+      flex: 2 1 260px;     /* ✅ بياخد مساحة بس بينزل سطر إذا ضاق */
+      min-width: 200px;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:6px;
+    "
+  >
 
-            <div style="margin-bottom: 20px; color: #555; background:#e3f2fd; padding:10px; border-radius:8px; display:inline-block;">
-                📊 إحصائيات الفوج: <b>${totalTrainings}</b> تدريب | <b>${totalShows}</b> عرض رسمي.
-            </div>
+  <select
+    id="filterInst"
+    onchange="renderBandTables()"
+    style="
+      flex: 1 1 160px;
+      min-width: 160px;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:6px;
+    "
+  >
+    <option value="">🎹 كل الآلات</option>
+    <option value="ترومبيت" ${filterInst==='ترومبيت'?'selected':''}>ترومبيت</option>
+    <option value="سحاب" ${filterInst==='سحاب'?'selected':''}>سحاب</option>
+    <option value="بريتون" ${filterInst==='بريتون'?'selected':''}>بريتون</option>
+    <option value="بستون" ${filterInst==='بستون'?'selected':''}>بستون</option>
+    <option value="بتكيس" ${filterInst==='بتكيس'?'selected':''}>بتكيس</option>
+    <option value="طبل" ${filterInst==='طبل'?'selected':''}>طبل</option>
+    <option value="مثلث" ${filterInst==='مثلث'?'selected':''}>مثلث</option>
+  </select>
+</div>
+
+<div class="band-stats" style="
+  margin-bottom:20px;
+  color:#555;
+  background:#e3f2fd;
+  padding:10px;
+  border-radius:8px;
+  display:block;       /* ✅ بدل inline-block */
+  width:100%;
+  text-align:center;
+">
+  📊 إحصائيات الفوج: <b>${totalTrainings}</b> تدريب | <b>${totalShows}</b> عرض رسمي.
+</div>
+
     `;
 
     // إضافة الجداول المقسمة
@@ -8688,6 +8732,7 @@ function applyAttTarget(){
 
 </body>
 </html>
+
 
 
 
