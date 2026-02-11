@@ -782,26 +782,47 @@ body.modal-lock {
   pointer-events: none;
 }
 
-/* عام */
 * { box-sizing: border-box; }
-html, body { max-width: 100%; overflow-x: hidden; }
 
-/* موبايل */
-@media (max-width: 768px) {
+.section-box { max-width: 100%; }
 
-  /* إذا عندك محتوى رئيسي عم يترك مساحة لسايدبار */
-  .main, .content, .page, .container, .wrapper, .glass-panel {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
+.table-wrap{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
 
-  /* إذا عندك سايدبار فعلي */
-  .sidebar, .side-menu, .nav-side {
-    display: none !important;
+#adminTable{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 780px; /* يخلي الجدول ما ينضغط بشكل بشع */
+}
+
+#adminTable th, #adminTable td{
+  white-space: nowrap;  /* يمنع التفاف النص ويخلي السكرول نظيف */
+}
+
+.admin-actions{
+  margin-top: 15px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-actions button{
+  flex: 1;
+  min-width: 200px;
+}
+
+@media (max-width: 600px){
+  #adminTable{ min-width: 720px; }
+  .admin-actions button{
+    width: 100%;
+    flex: 1 1 100%;
   }
 }
+
 
   
   </style>
@@ -2105,27 +2126,32 @@ async function buildAdminUI() {
         </div>
       </div>
 
-      <div class="section-box">
-        <h3>نتائج البحث: <span id="countDisplay" style="color:#c62828">0</span> عضو</h3>
-        <table id="adminTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>الاسم</th>
-              <th>الفرقة</th>
-              <th>الرتبة</th>
-              <th>العمر</th>
-              <th>قائد؟</th>
-              <th>إجراءات</th>
-              <th>التفاصيل</th> </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <div style="margin-top:15px">
-            <button class="btn-danger" onclick="initApp()">تحديث البيانات من السيرفر</button>
-            <button onclick="exportAllMembersCSV()">تصدير Excel</button>
-        </div>
-      </div>
+     <div class="section-box">
+  <h3>نتائج البحث: <span id="countDisplay" style="color:#c62828">0</span> عضو</h3>
+
+  <div class="table-wrap">
+    <table id="adminTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>الاسم</th>
+          <th>الفرقة</th>
+          <th>الرتبة</th>
+          <th>العمر</th>
+          <th>قائد؟</th>
+          <th>إجراءات</th>
+          <th>التفاصيل</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="admin-actions">
+    <button class="btn-danger" onclick="initApp()">تحديث البيانات من السيرفر</button>
+    <button class="btn-primary" onclick="exportAllMembersCSV()">تصدير Excel</button>
+  </div>
+</div>
 
       <div id="detailsModal" class="modal hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; display:none; justify-content:center; align-items:center;">
         <div style="background:white; padding:20px; border-radius:10px; width:90%; max-width:500px; position:relative; max-height:90vh; overflow-y:auto;">
@@ -8662,5 +8688,6 @@ function applyAttTarget(){
 
 </body>
 </html>
+
 
 
