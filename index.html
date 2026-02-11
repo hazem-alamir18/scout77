@@ -8063,6 +8063,8 @@ const container =
 // دالة مساعدة لرسم الجدول الواحد
 function generateHTMLTable(membersList, totalTrainings, totalShows) {
     let tableHtml = `
+          <div class="table-wrap">
+
         <table style="width:100%; border-collapse: collapse; text-align: right; margin-top:10px; background:white;">
             <thead style="background: #fff3e0; color: #e65100;">
                 <tr>
@@ -8140,7 +8142,7 @@ function generateHTMLTable(membersList, totalTrainings, totalShows) {
         `;
     });
 
-    tableHtml += `</tbody></table>`;
+    tableHtml += `</tbody></table> </div>`;
     return tableHtml;
 }
 
@@ -8732,6 +8734,7 @@ function applyAttTarget(){
 
 </body>
 </html>
+
 
 
 
