@@ -823,6 +823,45 @@ body.modal-lock {
   }
 }
 
+/* ================================
+   FIX: أزرار جدول المشرف بالموبايل
+   ================================ */
+
+/* أي زر جوّا جدول المشرف لا ياخد width:100% تبع الستايل العام */
+#adminTable button{
+  width: auto !important;
+  margin-top: 0 !important;
+}
+
+/* خلية الإجراءات: خلي الأزرار تلتف وما تتراكب */
+#adminTable td.actions-cell{
+  white-space: normal !important;   /* مهم حتى يقدروا ينزلوا سطر */
+}
+
+#adminTable td.actions-cell .actions-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* حجم مناسب للأزرار داخل الجدول */
+#adminTable td.actions-cell .actions-wrap button{
+  flex: 1 1 140px;     /* زرين بالسطر غالباً */
+  min-width: 120px;
+}
+
+/* على الموبايل الصغير: خليهم تحت بعض (أضمن شي) */
+@media (max-width: 520px){
+  #adminTable td.actions-cell .actions-wrap{
+    flex-direction: column;
+  }
+  #adminTable td.actions-cell .actions-wrap button{
+    width: 100% !important;
+    min-width: 0;
+  }
+}
 
   
   </style>
@@ -4188,11 +4227,14 @@ function renderAdminTable(){
           <td>${r.rank}</td>
           <td>${r.age}</td>
           <td>${r.isLeaderOfTeam === "yes" ? "✅" : "❌"}</td>
-          <td>
+          <td class="actions-cell">
+                        <div class="actions-wrap">
+
              ${approveBtn}
              <button class="small-btn" onclick="editMember(${r.id})" style="background:#ff9800; color:white;" title="تعديل البيانات">✏️ تعديل</button>
              <button class="small-btn danger" onclick="deleteMember('${r.id}')" title="حذف">🗑️</button>
-          </td>
+                    </div>
+ </td>
           <td>
              <button class="small-btn info" onclick="showMemberDetails('${r.email}')" style="background:#2196F3; color:white;">👁️ التفاصيل</button>
           </td>
@@ -8734,6 +8776,7 @@ function applyAttTarget(){
 
 </body>
 </html>
+
 
 
 
